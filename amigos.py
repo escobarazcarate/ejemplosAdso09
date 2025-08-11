@@ -1,7 +1,10 @@
 import json
 
-with open("amigos.json", "r", encoding="utf-8") as archivo:
-    amigos = json.load(archivo)
+try:
+    with open("amigos.json", "r", encoding="utf-8") as archivo:
+        amigos = json.load(archivo)
+except FileNotFoundError:
+    amigos = []
 
 def buscar(nom):
     posicion = -1
