@@ -1,3 +1,8 @@
+"""
+Se trata de incluir las opciones necesarias para los
+CRUD de productos y clientes.
+"""
+
 import json
 from productos import Productos
 
