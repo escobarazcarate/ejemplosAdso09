@@ -4,5 +4,11 @@
         "nombre": "Borrador",
         "precio": 950.0,
         "saldo": 15
+    },
+    {
+        "codigo": "10",
+        "nombre": "Lápiz",
+        "precio": 1200.0,
+        "saldo": 25
     }
 ]

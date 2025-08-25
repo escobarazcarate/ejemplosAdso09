@@ -1,76 +1,48 @@
-"""
-Se trata de incluir las opciones necesarias para los
-CRUD de productos y clientes.
-"""
-
-import json
-from productos import Productos
-#from clientes import Clientes
+from principal_productos import *
+from principal_clientes import *
+from principal_ventas import *
 
 try:
-    with open("productos.json", "r", encoding="utf-8") as archivo:
-        listado = json.load(archivo)
+    with open("productos.json", "r", encoding="utf-8") as archivop:
+        listadop = json.load(archivop)
 except FileNotFoundError:
-    listado = []
+    listadop = []
+mis_productos = Productos(listadop)
 
-mis_productos = Productos(listado)
+try:
+    with open("clientes.json", "r", encoding="utf-8") as archivoc:
+        listadoc = json.load(archivoc)
+except FileNotFoundError:
+    listadoc = []
+mis_clientes = Clientes(listadoc)
+
+try:
+    with open("ventas.json", "r", encoding="utf-8") as archivov:
+        listadov = json.load(archivov)
+except FileNotFoundError:
+    listadov = []
+mis_Ventas = Ventas(listadov)
 
 while True:
-    print("1. Agregar")
-    print("2. Buscar")
-    print("3. Modificar")
-    print("4. Borrar")
-    print("5. Listar\n")
-    print("0. Salir")
-    opcion = input("Digite su opción: ")
+    print("1. Gestión de productos")
+    print("2. Gestión de clientes")
+    print("3. Gestión de ventas")
+    print("\n0. Salir")
+    opcion = input("Qué opción desea: ")
     if opcion=="1":
-        cod = input("Código: ")
-        nom = input("Nombre: ")
-        pre = float(input("Precio: "))
-        sal = int(input("Saldo: "))
-        nuevo_producto = {"codigo": cod,
-                          "nombre": nom,
-                          "precio": pre,
-                          "saldo": sal}
-        resultado = mis_productos.agregar(nuevo_producto)
-        if resultado==0:
-            print("Producto agregado satisfactoriamente!")
-        else:
-            print("Código de producto ya existe!")
+        crud_productos(listadop, mis_productos)
     elif opcion=="2":
-        cod = input("Digite código a buscar: ")
-        resultado = mis_productos.buscar(cod)
-        if resultado==-1:
-            print("Producto no existe!")
-        else:
-            print(listado[resultado])
+        crud_clientes(listadoc, mis_clientes)
     elif opcion=="3":
-        cod = input("Digite código a modificar")
-        resultado = mis_productos.buscar(cod)
-        if resultado>-1:
-            nom = input("Nuevo nombre: ")
-            pre = float(input("Nuevo precio: "))
-            sal = int(input("Nuevo saldo: "))
-            nuevo_producto = {"codigo": cod,
-                            "nombre": nom,
-                            "precio": pre,
-                            "saldo": sal}
-            mis_productos.modificar(nuevo_producto)
-        else:
-            print("Producto no existe!")
-    elif opcion=="4":
-        cod = input("Digite código a borrar")
-        resultado = mis_productos.buscar(cod)
-        if resultado>-1:
-            mis_productos.borrar(cod)
-        else:
-            print("Producto no existe!")
-    elif opcion=="5":
-        mis_productos.listar()
+        crud_ventas(listadop,mis_productos,listadoc,mis_clientes,listadov,mis_Ventas)
     elif opcion=="0":
         break
-    else:
-        print("Opción inválida")
 
-with open("productos.json", "w", encoding="utf-8") as archivo:
-    json.dump(listado, archivo, indent=4, ensure_ascii=False)
+with open("productos.json", "w", encoding="utf-8") as archivop:
+    json.dump(listadop, archivop, indent=4, ensure_ascii=False)
+
+with open("clientes.json", "w", encoding="utf-8") as archivoc:
+    json.dump(listadoc, archivoc, indent=4, ensure_ascii=False)
+
+with open("ventas.json", "w", encoding="utf-8") as archivov:
+    json.dump(listadov, archivov, indent=4, ensure_ascii=False)
