@@ -20,3 +20,13 @@ class Productos:
             return 0
         else:
             return 1
+    def modificar(self,prod):
+        pos = self.buscar(prod["codigo"])
+        self.listado[pos]=prod
+    def borrar(self,cod):
+        pos = self.buscar(cod)
+        self.listado.pop(pos)
+    def listar(self):
+        print("LISTADO DE PRODUCTOS")
+        for i in range(len(self.listado)):
+            print(self.listado[i])

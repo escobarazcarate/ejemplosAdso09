@@ -5,6 +5,7 @@ CRUD de productos y clientes.
 
 import json
 from productos import Productos
+#from clientes import Clientes
 
 try:
     with open("productos.json", "r", encoding="utf-8") as archivo:
@@ -16,7 +17,10 @@ mis_productos = Productos(listado)
 
 while True:
     print("1. Agregar")
-    print("2. Buscar\n")
+    print("2. Buscar")
+    print("3. Modificar")
+    print("4. Borrar")
+    print("5. Listar\n")
     print("0. Salir")
     opcion = input("Digite su opción: ")
     if opcion=="1":
@@ -40,8 +44,33 @@ while True:
             print("Producto no existe!")
         else:
             print(listado[resultado])
+    elif opcion=="3":
+        cod = input("Digite código a modificar")
+        resultado = mis_productos.buscar(cod)
+        if resultado>-1:
+            nom = input("Nuevo nombre: ")
+            pre = float(input("Nuevo precio: "))
+            sal = int(input("Nuevo saldo: "))
+            nuevo_producto = {"codigo": cod,
+                            "nombre": nom,
+                            "precio": pre,
+                            "saldo": sal}
+            mis_productos.modificar(nuevo_producto)
+        else:
+            print("Producto no existe!")
+    elif opcion=="4":
+        cod = input("Digite código a borrar")
+        resultado = mis_productos.buscar(cod)
+        if resultado>-1:
+            mis_productos.borrar(cod)
+        else:
+            print("Producto no existe!")
+    elif opcion=="5":
+        mis_productos.listar()
     elif opcion=="0":
         break
+    else:
+        print("Opción inválida")
 
 with open("productos.json", "w", encoding="utf-8") as archivo:
     json.dump(listado, archivo, indent=4, ensure_ascii=False)
