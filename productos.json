@@ -10,5 +10,11 @@
         "nombre": "Lápiz",
         "precio": 1200.0,
         "saldo": 25
+    },
+    {
+        "codigo": "30",
+        "nombre": "Tijera",
+        "precio": 4500.0,
+        "saldo": 12
     }
 ]

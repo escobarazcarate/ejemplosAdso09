@@ -24,12 +24,25 @@ def crud_ventas(listadop,mis_productos,listadoc,mis_clientes,listadov, mis_venta
                     cod = ["","",""]
                     can = [0,0,0]
                     for i in range(3):
-                        cod[i] = input("Código producto: ")
+                        resultadop = -1
+                        while True:
+                            cod[i] = input(f"Código de producto {i+1}: ")
+                            if cod[i]=="-1":
+                                break
+                            resultadop = mis_productos.buscar(cod[i])
+                            if resultadop>-1:
+                                break
+                            else:
+                                print("Código de producto no existe")
                         if cod[i]=="-1":
                             break
-                        resultadop = mis_productos.buscar(cod[i])
                         print(listadop[resultadop]["nombre"])
                         can[i] = int(input("Cantidad: "))
+                        producto = {"codigo":cod[i],
+                                    "nombre":listadop[resultadop]["nombre"],
+                                    "precio":listadop[resultadop]["precio"],
+                                    "stock":listadop[resultadop]["stock"]-can[i]}
+                        mis_productos.modificar(producto)
             nueva_venta = {"numero":num,"id":id,
                            "codigo1":cod[0],"cantidad1":can[0],
                            "codigo2":cod[1],"cantidad2":can[1],
@@ -41,7 +54,7 @@ def crud_ventas(listadop,mis_productos,listadoc,mis_clientes,listadov, mis_venta
             if resultado==-1:
                 print("Producto no existe!")
             else:
-                print(listado[resultado])
+                print(listadop[resultado])
         elif opcion=="3":
             cod = input("Digite código a modificar")
             resultado = mis_productos.buscar(cod)
