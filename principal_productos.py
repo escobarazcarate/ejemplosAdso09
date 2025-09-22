@@ -64,4 +64,3 @@ def crud_productos(listado, mis_productos):
             break
         else:
             print("Opción inválida")
-
