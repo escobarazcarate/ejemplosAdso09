@@ -1,6 +1,7 @@
 from principal_productos import *
 from principal_clientes import *
 from principal_ventas import *
+from pagos import *
 
 try:
     with open("productos.json", "r", encoding="utf-8") as archivop:
@@ -23,10 +24,19 @@ except FileNotFoundError:
     listadov = []
 mis_Ventas = Ventas(listadov)
 
+try:
+    with open("pagos.json", "r", encoding="utf-8") as archivov:
+        listadog = json.load(archivov)
+except FileNotFoundError:
+    listadog = []
+mis_pagos = pago(listadog)
+
+
 while True:
     print("1. Gestión de productos")
     print("2. Gestión de clientes")
     print("3. Gestión de ventas")
+    print("4. Gestion de pago")
     print("\n0. Salir")
     opcion = input("Qué opción desea: ")
     if opcion=="1":
@@ -46,3 +56,4 @@ with open("clientes.json", "w", encoding="utf-8") as archivoc:
 
 with open("ventas.json", "w", encoding="utf-8") as archivov:
     json.dump(listadov, archivov, indent=4, ensure_ascii=False)
+

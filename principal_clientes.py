@@ -1,3 +1,4 @@
+
 """
 Se trata de escribir un programa con un CRUD para clientes
 Cada producto debe tener los siguientes datos:
@@ -66,4 +67,3 @@ def crud_clientes(listado, mis_clientes):
             break
         else:
             print("Opción inválida")
-

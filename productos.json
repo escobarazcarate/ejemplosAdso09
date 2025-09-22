@@ -1,20 +1,14 @@
 [
     {
-        "codigo": "20",
-        "nombre": "Borrador",
-        "precio": 950.0,
-        "saldo": 15
+        "codigo": "2024",
+        "nombre": "sara",
+        "precio": 200.0,
+        "saldo": 23010
     },
     {
-        "codigo": "10",
-        "nombre": "Lápiz",
-        "precio": 1200.0,
-        "saldo": 25
-    },
-    {
-        "codigo": "30",
-        "nombre": "Tijera",
-        "precio": 4500.0,
-        "saldo": 12
+        "codigo": "1224",
+        "nombre": "lapiz",
+        "precio": 20000.0,
+        "saldo": 500000
     }
 ]
